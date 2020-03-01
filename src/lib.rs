@@ -139,6 +139,31 @@ impl Bresenham {
             octant: octant,
         }
     }
+
+    #[inline]
+    pub fn between(start: Point, end: Point) -> Bresenham {
+        let octant = Octant::from_points(start, end);
+
+        let dx = end.0 - start.0;
+        let dy = end.1 - start.1;
+        let end = (end.0 + dx.signum(), end.1 + dy.signum());
+
+        let start = octant.to_octant0(start);
+        let end = octant.to_octant0(end);
+
+        let dx = end.0 - start.0;
+        let dy = end.1 - start.1;
+
+        Bresenham {
+            x: start.0,
+            y: start.1,
+            dx: dx,
+            dy: dy,
+            x1: end.0,
+            diff: dy - dx,
+            octant: octant,
+        }
+    }
 }
 
 impl Iterator for Bresenham {
