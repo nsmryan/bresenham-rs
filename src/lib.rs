@@ -38,17 +38,19 @@ extern crate std;
 
 use core::iter::Iterator;
 
+type N = i32;
+
 /// Convenient typedef for two machines-sized integers
-pub type Point = (isize, isize);
+pub type Point = (N, N);
 
 /// Line-drawing iterator
 pub struct Bresenham {
-    x: isize,
-    y: isize,
-    dx: isize,
-    dy: isize,
-    x1: isize,
-    diff: isize,
+    x: N,
+    y: N,
+    dx: N,
+    dy: N,
+    x1: N,
+    diff: N,
     octant: Octant,
 }
 
